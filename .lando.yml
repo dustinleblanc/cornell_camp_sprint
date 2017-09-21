@@ -1,0 +1,7 @@
+name: cornell-camp-sprint
+recipe: pantheon
+config:
+  framework: drupal8
+  env: dev
+  site: cornell-camp-sprint
+  id: ec66283b-0afa-4b2c-a884-34d4e999ee3e
