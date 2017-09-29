@@ -5,3 +5,20 @@ config:
   env: dev
   site: cornell-camp-sprint
   id: ec66283b-0afa-4b2c-a884-34d4e999ee3e
+services:
+  appserver:
+    overrides:
+      services:
+        environment:
+          BEHAT_PARAMS: '{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "http://nginx/"}}}'
+tooling:
+  test:
+    service: appserver
+    cmd:
+      - "composer"
+      - "test"
+  phpunit:
+    service: appserver
+    cmd:
+      - "composer"
+      - "test:unit"

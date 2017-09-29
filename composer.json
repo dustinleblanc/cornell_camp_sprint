@@ -23,15 +23,17 @@
     "webflo/drupal-core-strict": "^8"
   },
   "require-dev": {
-    "mikey179/vfsstream": "^1.2",
     "behat/behat": "3.*",
     "behat/mink": "^1.7",
     "behat/mink-extension": "^2.2",
     "behat/mink-goutte-driver": "^1.2",
-    "jcalderonzumba/gastonjs": "^1.0.2",
-    "jcalderonzumba/mink-phantomjs-driver": "^0.3.1",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3",
+    "drupal/coder": "^8.2.12",
     "drupal/drupal-extension": "^3.1",
     "drush-ops/behat-drush-endpoint": "^0.0.4",
+    "jcalderonzumba/gastonjs": "^1.0.2",
+    "jcalderonzumba/mink-phantomjs-driver": "^0.3.1",
+    "mikey179/vfsstream": "^1.2",
     "pantheon-systems/quicksilver-pushback": "~1",
     "phpunit/phpunit": "^4.8",
     "symfony/css-selector": "^2.8"
@@ -47,12 +49,14 @@
     ]
   },
   "scripts": {
+    "behat": "COMPOSER_PROCESS_TIMEOUT=3600 SHELL_INTERACTIVE=true behat --colors --config=/app/tests/behat-pantheon.yml --format=progress",
     "build-assets": [
       "@prepare-for-pantheon",
       "composer install --optimize-autoloader"
     ],
     "drupal-unit-tests": "cd web/core && ../../vendor/bin/phpunit --testsuite=unit --exclude-group Composer,DependencyInjection,PageCache",
     "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+    "lint": "phpcbf --standard=Drupal -n web/modules/custom/* web/themes/custom/*",
     "prepare-for-pantheon": "DrupalProject\\composer\\ScriptHandler::prepareForPantheon",
     "post-install-cmd": [
       "@drupal-scaffold",
@@ -64,7 +68,12 @@
     "post-create-project-cmd": [
       "@drupal-scaffold",
       "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
-    ]
+    ],
+    "test" : [
+      "@lint",
+      "@behat"
+    ],
+    "test:unit": "phpunit"
   },
   "extra": {
     "installer-paths": {
