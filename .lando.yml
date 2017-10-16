@@ -10,7 +10,14 @@ services:
     overrides:
       services:
         environment:
-          BEHAT_PARAMS: '{"extensions" : {"Behat\\MinkExtension" : {"base_url" : "http://nginx/"}}}'
+            BEHAT_PARAMS: >-
+              {
+                  "extensions" : {
+                      "Behat\\MinkExtension" : {
+                          "base_url" : "http://nginx/"
+                        }
+                    }
+                }
 tooling:
   test:
     service: appserver
