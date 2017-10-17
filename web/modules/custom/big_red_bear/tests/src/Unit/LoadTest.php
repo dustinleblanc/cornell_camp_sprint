@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\Tests\big_red_bear\Functional;
+namespace Drupal\Tests\big_red_bear\Unit;
 
 use Drupal\Tests\UnitTestCase;
 
@@ -10,5 +10,12 @@ use Drupal\Tests\UnitTestCase;
  * @group big_red_bear
  */
 class LoadTest extends UnitTestCase {
+
+  /**
+   *
+   */
+  public function testTrueIsTrue() {
+    $this->assertTrue(TRUE);
+  }
 
 }
