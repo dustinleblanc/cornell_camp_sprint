@@ -22,10 +22,20 @@ tooling:
   test:
     service: appserver
     cmd:
-      - "composer"
+      - "robo"
       - "test"
   phpunit:
     service: appserver
     cmd:
-      - "composer"
-      - "test:unit"
+      - "robo"
+      - "unit"
+  behat:
+    service: appserver
+    cmd:
+      - "robo"
+      - "behat"
+  lint:
+    service: appserver
+    cmd:
+      - "robo"
+      - "lint"
